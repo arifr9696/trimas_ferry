@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Halaman Pembayaran</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(90deg, #eef8ff 0%, #ffffff 15%, #ffffff 85%, #eef8ff 100%);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 38px 12px;
+      color: #333;
+    }
+
+    .payment-wrapper {
+      width: 100%;
+      max-width: 365px;
+      background: #ffffff;
+      min-height: 620px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .payment-header {
+      background: #07315f;
+      color: #ffffff;
+      padding: 16px 18px 58px;
+      border-radius: 14px 14px 0 0;
+      position: relative;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .merchant-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .merchant-logo {
+      width: 48px;
+      height: 48px;
+      background: #ffffff;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid #e5e5e5;
+    }
+
+    .merchant-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .merchant-name {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .close-btn {
+      font-size: 30px;
+      line-height: 1;
+      cursor: pointer;
+      font-weight: 300;
+    }
+
+    .amount-card {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: -56px;
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 14px 14px 12px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.13);
+      color: #333;
+    }
+
+    .amount-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #9095a3;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .timer {
+      color: #0076ff;
+      font-weight: 600;
+    }
+
+    .amount-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .amount {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+    }
+
+    .chevron-down {
+      width: 10px;
+      height: 10px;
+      border-right: 3px solid #07315f;
+      border-bottom: 3px solid #07315f;
+      transform: rotate(45deg);
+      margin-right: 4px;
+      margin-bottom: 6px;
+    }
+
+    .order-id {
+      margin-top: 6px;
+      color: #9ca1ad;
+      font-size: 12px;
+    }
+
+    .payment-body {
+      padding: 90px 18px 30px;
+    }
+
+    .section-title {
+      color: #8f94a2;
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 28px;
+    }
+
+    .payment-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .payment-method {
+      border-bottom: 1px solid #e4e6ea;
+      padding-bottom: 22px;
+      margin-bottom: 18px;
+    }
+
+    .method-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .method-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #33333b;
+    }
+
+    .arrow-right {
+      width: 10px;
+      height: 10px;
+      border-right: 3px solid #333;
+      border-bottom: 3px solid #333;
+      transform: rotate(-45deg);
+      margin-right: 5px;
+    }
+
+    .logo-list {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
+    .bank-logo,
+    .card-logo,
+    .wallet-logo {
+      width: 45px;
+      height: 32px;
+      border: 1px solid #e6e9ef;
+      border-radius: 2px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      overflow: hidden;
+    }
+
+    .payment-method:hover {
+      cursor: pointer;
+      opacity: 0.85;
+    }
+
+    .brand-text {
+      font-weight: 800;
+      font-size: 12px;
+      color: #07315f;
+    }
+
+    .bca {
+      color: #005baa;
+    }
+
+    .mandiri {
+      color: #003d79;
+    }
+
+    .bni {
+      color: #ef6c00;
+    }
+
+    .bri {
+      color: #00529c;
+      font-size: 10px;
+    }
+
+    .visa {
+      color: #1434cb;
+      font-size: 14px;
+    }
+
+    .mc {
+      color: #eb001b;
+      font-size: 13px;
+    }
+
+    .jcb {
+      color: #138f46;
+      font-size: 14px;
+    }
+
+    .amex {
+      color: #0070c0;
+      font-size: 9px;
+      text-align: center;
+      line-height: 1.1;
+    }
+
+    .gopay {
+      color: #00a6ce;
+      font-size: 13px;
+    }
+
+    .qris {
+      color: #9ca1ad;
+      font-size: 13px;
+    }
+
+    @media (max-width: 420px) {
+      body {
+        padding: 0;
+        background: #ffffff;
+      }
+
+      .payment-wrapper {
+        max-width: 100%;
+        min-height: 100vh;
+      }
+
+      .payment-header {
+        border-radius: 0;
+        margin: 0 24px;
+        margin-top: 38px;
+      }
+
+      .payment-body {
+        padding-left: 42px;
+        padding-right: 42px;
+      }
+
+      .amount-card {
+        left: 18px;
+        right: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="payment-wrapper">
+
+    <div class="payment-header">
+      <div class="header-content">
+        <div class="merchant-info">
+          <div class="merchant-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Zara_Logo.svg" alt="Zara Logo">
+          </div>
+          <div class="merchant-name">Zara</div>
+        </div>
+
+        <div 
+          class="close-btn"
+          onclick="window.location.href='file:///Users/arifrahman/Documents/pekerjaan_ummat/non_akademik/aplikasi%20tiket/set_booking.html'"
+        >
+          &times;
+        </div>
+      </div>
+
+      <div 
+        class="amount-card"
+        onclick="window.location.href='file:///Users/arifrahman/Documents/pekerjaan_ummat/non_akademik/aplikasi%20tiket/set_booking.html'"
+      >
+        <div class="amount-top">
+          <span>Total</span>
+          <span>
+            Pilih dalam 
+            <span class="timer" id="timer">00:59:32</span>
+          </span>
+        </div>
+
+        <div class="amount-row">
+          <div class="amount">Rp3.500.000</div>
+          <div class="chevron-down"></div>
+        </div>
+
+        <div class="order-id">Order ID #34345445554</div>
+      </div>
+    </div>
+
+    <div class="payment-body">
+      <h2 class="section-title">Metode pembayaran</h2>
+
+      <a 
+        href="file:///Users/arifrahman/Documents/pekerjaan_ummat/non_akademik/aplikasi%20tiket/set_booking.html" 
+        class="payment-link"
+      >
+        <div class="payment-method">
+          <div class="method-header">
+            <div class="method-title">Transfer bank</div>
+            <div class="arrow-right"></div>
+          </div>
+
+          <div class="logo-list">
+            <div class="bank-logo">
+              <span class="brand-text bca">BCA</span>
+            </div>
+
+            <div class="bank-logo">
+              <span class="brand-text mandiri">mandiri</span>
+            </div>
+
+            <div class="bank-logo">
+              <span class="brand-text bni">BNI</span>
+            </div>
+
+            <div class="bank-logo">
+              <span class="brand-text bri">BANK BRI</span>
+            </div>
+
+            <div class="bank-logo">
+              <span class="brand-text" style="font-size:8px;color:#0f7a3b;">Permata</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a 
+        href="file:///Users/arifrahman/Documents/pekerjaan_ummat/non_akademik/aplikasi%20tiket/set_booking.html" 
+        class="payment-link"
+      >
+        <div class="payment-method">
+          <div class="method-header">
+            <div class="method-title">Kartu kredit/debit</div>
+            <div class="arrow-right"></div>
+          </div>
+
+          <div class="logo-list">
+            <div class="card-logo">
+              <span class="brand-text visa">VISA</span>
+            </div>
+
+            <div class="card-logo">
+              <span class="brand-text mc">●●</span>
+            </div>
+
+            <div class="card-logo">
+              <span class="brand-text jcb">JCB</span>
+            </div>
+
+            <div class="card-logo">
+              <span class="brand-text amex">AMERICAN<br>EXPRESS</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a 
+        href="file:///Users/arifrahman/Documents/pekerjaan_ummat/non_akademik/aplikasi%20tiket/set_booking.html" 
+        class="payment-link"
+      >
+        <div class="payment-method">
+          <div class="method-header">
+            <div class="method-title">Gopay/QRIS</div>
+            <div class="arrow-right"></div>
+          </div>
+
+          <div class="logo-list">
+            <div class="wallet-logo">
+              <span class="brand-text gopay">G</span>
+            </div>
+
+            <div class="wallet-logo">
+              <span class="brand-text qris">QRIS</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+
+  <script>
+    let totalSeconds = 59 * 60 + 32;
+
+    function updateTimer() {
+      const timerElement = document.getElementById("timer");
+
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+
+      timerElement.textContent =
+        "00:" +
+        String(minutes).padStart(2, "0") +
+        ":" +
+        String(seconds).padStart(2, "0");
+
+      if (totalSeconds > 0) {
+        totalSeconds--;
+      } else {
+        clearInterval(countdown);
+        alert("Waktu pembayaran telah habis.");
+        window.location.href = "file:///Users/arifrahman/Documents/pekerjaan_ummat/non_akademik/aplikasi%20tiket/set_booking.html";
+      }
+    }
+
+    const countdown = setInterval(updateTimer, 1000);
+    updateTimer();
+  </script>
+
+</body>
+</html>

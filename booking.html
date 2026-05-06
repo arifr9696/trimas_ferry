@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Tiket - PT. TRI SAKTI LAUTAN MAS</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #FBFBFB;
+            color: #111;
+        }
+
+        /* ================= NAVBAR ================= */
+        .navbar {
+            background: #ffffff;
+            padding: 18px 0;
+        }
+
+        .navbar-brand img {
+            height: 65px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #111;
+            font-size: 13px;
+            font-weight: 500;
+            margin-left: 30px;
+            transition: 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #0d6efd;
+        }
+
+        /* ================= BOOKING DETAIL PAGE ================= */
+        .booking-detail-section {
+            padding: 30px 0 70px;
+            background: #FBFBFB;
+        }
+
+        .booking-detail-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #111;
+        }
+
+        .booking-info-box {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            background: #fff;
+            border: 1px solid #d8d8d8;
+            min-height: 50px;
+            margin-bottom: 18px;
+        }
+
+        .booking-user,
+        .booking-route {
+            padding: 10px 14px;
+        }
+
+        .booking-user {
+            border-right: 1px solid #d8d8d8;
+        }
+
+        .booking-user h6,
+        .booking-route h6 {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 3px;
+            color: #111;
+        }
+
+        .booking-user p,
+        .booking-route p {
+            font-size: 10px;
+            color: #555;
+            margin: 0;
+        }
+
+        .order-title {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 16px 0 18px;
+        }
+
+        .ticket-summary-card {
+            background: #edf6ff;
+            border: 1px solid #9dcef4;
+            padding: 10px 14px;
+            margin-bottom: 12px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 15px;
+        }
+
+        .ticket-summary-left p,
+        .ticket-summary-right p {
+            font-size: 13px;
+            margin: 0 0 3px;
+            color: #111;
+        }
+
+        .ticket-summary-right p {
+            font-weight: 700;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .vehicle-doc-title {
+            font-size: 13px;
+            color: #111;
+            margin-top: 14px;
+            margin-bottom: 5px;
+        }
+
+        .doc-btn {
+            background: #148fc9;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 11px;
+            padding: 3px 7px;
+            margin-right: 3px;
+        }
+
+        .doc-btn:hover {
+            background: #0f7db0;
+        }
+
+        .small-ticket-card {
+            min-height: 62px;
+        }
+
+        .booking-total {
+            color: #2196f3;
+            font-size: 17px;
+            font-weight: 800;
+            margin: 8px 0 4px;
+        }
+
+        .booking-expired {
+            color: #7890a4;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        /* ================= SHIP SCHEDULE ================= */
+        .ship-wrapper {
+            background: #fff;
+            border: 1px solid #d8d8d8;
+            padding: 12px 14px;
+            min-height: 100%;
+        }
+
+        .ship-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: #111;
+        }
+
+        .ship-card {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            background: #fff;
+            border: 1px solid #e1e1e1;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 18px;
+            align-items: stretch;
+        }
+
+        .ship-image {
+            width: 100%;
+            height: 100%;
+            min-height: 200px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ship-image img {
+            width: 100%;
+            height: 100%;
+            min-height: 200px;
+            object-fit: contain;
+            object-position: center;
+            display: block;
+        }
+
+        .ship-content {
+            padding: 10px 14px;
+        }
+
+        .ship-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .ship-header h5 {
+            color: #236ed4;
+            font-size: 14px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .ship-header span {
+            background: #4d9df3;
+            color: #fff;
+            font-size: 11px;
+            padding: 5px 12px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .facility-title,
+        .capacity-title {
+            color: #666;
+            font-size: 12px;
+            margin: 6px 0 4px;
+        }
+
+        .facility-box {
+            border: 1px solid #e6e6e6;
+            padding: 5px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px 12px;
+            font-size: 11px;
+            color: #555;
+        }
+
+        .capacity-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .capacity-box span {
+            background: #2aa7ee;
+            color: #fff;
+            font-size: 11px;
+            border-radius: 4px;
+            padding: 3px 7px;
+        }
+
+        .ship-action {
+            text-align: right;
+            margin-top: 18px;
+        }
+
+        .ship-action button {
+            background: #2d84dc;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 11px;
+            padding: 5px 14px;
+        }
+
+        .ship-action button:hover {
+            background: #1c73c9;
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            background: #fff;
+            padding-top: 50px;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .footer-logo img {
+            height: 85px;
+        }
+
+        .footer-menu a {
+            text-decoration: none;
+            color: #111;
+            margin: 0 18px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .footer-menu a:hover {
+            color: #0d6efd;
+        }
+
+        .social-icons i {
+            font-size: 32px;
+            margin-left: 18px;
+            color: #2e4f9c;
+            cursor: pointer;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #ececec;
+            margin-top: 40px;
+            padding: 30px 0;
+            font-size: 18px;
+            color: #7a7a7a;
+        }
+
+        .footer-bottom a {
+            text-decoration: none;
+            color: #7a7a7a;
+            margin-left: 30px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media(max-width: 992px) {
+            .footer-logo {
+                text-align: center !important;
+                margin-bottom: 20px;
+            }
+
+            .footer-logo img {
+                display: inline-block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+
+            .footer-menu {
+                margin: 20px 0;
+                text-align: center;
+            }
+
+            .social-icons {
+                text-align: center !important;
+                margin-top: 20px;
+            }
+
+            .social-icons i {
+                margin: 0 12px;
+            }
+
+            .ship-card {
+                grid-template-columns: 1fr;
+            }
+
+            .ship-image {
+                height: auto;
+                min-height: 230px;
+            }
+
+            .ship-image img {
+                height: auto;
+                min-height: 230px;
+                object-fit: contain;
+            }
+        }
+
+        @media(max-width: 768px) {
+            .navbar-brand img {
+                height: 58px;
+            }
+
+            .navbar-nav .nav-link {
+                margin-left: 0;
+                padding: 8px 0;
+            }
+
+            .booking-detail-section {
+                padding: 25px 0 50px;
+            }
+
+            .booking-info-box {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-user {
+                border-right: none;
+                border-bottom: 1px solid #d8d8d8;
+            }
+
+            .ticket-summary-card {
+                grid-template-columns: 1fr;
+            }
+
+            .ticket-summary-right p {
+                text-align: left;
+            }
+
+            .ship-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .ship-action {
+                text-align: left;
+            }
+
+            .footer-bottom {
+                font-size: 14px;
+                gap: 15px;
+            }
+
+            .footer-bottom a {
+                margin-left: 0;
+                margin-right: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+
+            <a class="navbar-brand" href="#">
+                <img src="img/logo.png" alt="Logo">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Tutorial</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Tentang Kami</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Kontak</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- ================= BOOKING DETAIL SECTION ================= -->
+    <section class="booking-detail-section">
+        <div class="container">
+
+            <h2 class="booking-detail-title">Booking Tiket</h2>
+
+            <div class="row g-4">
+
+                <!-- ================= LEFT CONTENT ================= -->
+                <div class="col-lg-6">
+
+                    <!-- Info Pemesan -->
+                    <div class="booking-info-box">
+                        <div class="booking-user">
+                            <h6>Maulana Rahman</h6>
+                            <p>maulana62@gmail.com / 081234521290</p>
+                        </div>
+
+                        <div class="booking-route">
+                            <h6>Lembar → Padang Bai</h6>
+                            <p>1 Februari 2025, 18.00 WITA - 1 Februari 2025, 23.00 WITA</p>
+                        </div>
+                    </div>
+
+                    <h5 class="order-title">Pesanan Tiket</h5>
+
+                    <!-- Tiket Golongan III -->
+                    <div class="ticket-summary-card">
+                        <div class="ticket-summary-left">
+                            <p>Harga Tiket Golongan III</p>
+                            <p>Jumlah Tiket</p>
+                            <p>Total Beli</p>
+
+                            <div class="vehicle-doc-title">Plat Kendaraan dan STNK Kendaraan</div>
+                            <button type="button" class="doc-btn">Bukti Plat Kendaraan</button>
+                            <button type="button" class="doc-btn">Bukti STNK Kendaraan</button>
+                        </div>
+
+                        <div class="ticket-summary-right">
+                            <p>Rp. 456.290,00</p>
+                            <p>1 Tiket</p>
+                            <p>Rp. 456.290,00</p>
+                        </div>
+                    </div>
+
+                    <!-- Tiket Golongan IV -->
+                    <div class="ticket-summary-card">
+                        <div class="ticket-summary-left">
+                            <p>Harga Tiket Golongan IV</p>
+                            <p>Jumlah Tiket</p>
+                            <p>Total Beli</p>
+
+                            <div class="vehicle-doc-title">Plat Kendaraan dan STNK Kendaraan</div>
+                            <button type="button" class="doc-btn">Bukti Plat Kendaraan</button>
+                            <button type="button" class="doc-btn">Bukti STNK Kendaraan</button>
+                        </div>
+
+                        <div class="ticket-summary-right">
+                            <p>Rp. 1.370.410,00</p>
+                            <p>2 Tiket</p>
+                            <p>Rp. 2.740.820,00</p>
+                        </div>
+                    </div>
+
+                    <!-- Tiket Bayi -->
+                    <div class="ticket-summary-card small-ticket-card">
+                        <div class="ticket-summary-left">
+                            <p>Harga Tiket Bayi</p>
+                            <p>Jumlah Tiket</p>
+                            <p>Total Beli</p>
+                        </div>
+
+                        <div class="ticket-summary-right">
+                            <p>Rp. 10.700,00</p>
+                            <p>1 Tiket</p>
+                            <p>Rp. 10.700,00</p>
+                        </div>
+                    </div>
+
+                    <!-- Tiket Dewasa -->
+                    <div class="ticket-summary-card small-ticket-card">
+                        <div class="ticket-summary-left">
+                            <p>Harga Tiket Dewasa Ekonomi</p>
+                            <p>Jumlah Tiket</p>
+                            <p>Total Beli</p>
+                        </div>
+
+                        <div class="ticket-summary-right">
+                            <p>Rp. 113.000,00</p>
+                            <p>1 Tiket</p>
+                            <p>Rp. 113.000,00</p>
+                        </div>
+                    </div>
+
+                    <h4 class="booking-total">Total Harga : Rp. 3.320.810,00</h4>
+                    <p class="booking-expired">Kadaluwarsa Dalam : 3 Februari 2026</p>
+
+                </div>
+
+                <!-- ================= RIGHT CONTENT ================= -->
+                <div class="col-lg-6">
+
+                    <div class="ship-wrapper">
+                        <h4 class="ship-title">Jadwal Kapal yang tersedia</h4>
+
+                        <!-- Ship Card 1 -->
+                        <div class="ship-card">
+                            <div class="ship-image">
+                                <img src="img/kapal/trimas_kanaya.png" alt="KMP Trimas Kanaya">
+                            </div>
+
+                            <div class="ship-content">
+                                <div class="ship-header">
+                                    <h5>KMP Trimas Kanaya</h5>
+                                    <span>Dermaga 1</span>
+                                </div>
+
+                                <p class="facility-title">Fasilitas</p>
+
+                                <div class="facility-box">
+                                    <span>❄ AC</span>
+                                    <span>🚻 Toilet</span>
+                                    <span>🕌 Musholla</span>
+                                    <span>☕ Kantin</span>
+                                    <span>📺 TV</span>
+                                    <span>📡 Wifi</span>
+                                    <span>🔌 Charging</span>
+                                    <span>📹 CCTV</span>
+                                </div>
+
+                                <p class="capacity-title">Kapasitas Tersisa</p>
+
+                                <div class="capacity-box">
+                                    <span>🚙 Mobil (4)</span>
+                                    <span>🚚 Truk (3)</span>
+                                    <span>🏍 Motor (7)</span>
+                                    <span>🚌 Kursi (89)</span>
+                                </div>
+
+                                <div class="ship-action">
+                                    <a href="file:///Users/arifrahman/Documents/pekerjaan_ummat/non_akademik/aplikasi%20tiket/pembayaran.html">
+                                    <button type="button">Pilih Kapal</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ship Card 2 -->
+                        <div class="ship-card">
+                            <div class="ship-image">
+                                <img src="img/kapal/trimas_kanaya.png" alt="KMP Trimas Fhadila">
+                            </div>
+
+                            <div class="ship-content">
+                                <div class="ship-header">
+                                    <h5>KMP Trimas Fhadila</h5>
+                                    <span>Dermaga 2</span>
+                                </div>
+
+                                <p class="facility-title">Fasilitas</p>
+
+                                <div class="facility-box">
+                                    <span>❄ AC</span>
+                                    <span>🚻 Toilet</span>
+                                    <span>🕌 Musholla</span>
+                                    <span>☕ Kantin</span>
+                                    <span>📺 TV</span>
+                                    <span>📡 Wifi</span>
+                                    <span>🔌 Charging</span>
+                                    <span>📹 CCTV</span>
+                                </div>
+
+                                <p class="capacity-title">Kapasitas Tersisa</p>
+
+                                <div class="capacity-box">
+                                    <span>🚙 Mobil (4)</span>
+                                    <span>🚚 Truk (3)</span>
+                                    <span>🏍 Motor (7)</span>
+                                    <span>🚌 Kursi (89)</span>
+                                </div>
+
+                                <div class="ship-action">
+                                    <a href="file:///Users/arifrahman/Documents/pekerjaan_ummat/non_akademik/aplikasi%20tiket/pembayaran.html">
+                                    <button type="button">Pilih Kapal</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-3 footer-logo">
+                    <img src="img/logo.png" alt="Logo Footer">
+                </div>
+
+                <div class="col-lg-6 text-center footer-menu">
+                    <a href="#">Beranda</a>
+                    <a href="#">Tutorial</a>
+                    <a href="#">Tentang Kami</a>
+                    <a href="#">Kontak</a>
+                </div>
+
+                <div class="col-lg-3 text-end social-icons">
+                    <i class="bi bi-facebook"></i>
+                    <i class="bi bi-instagram"></i>
+                    <i class="bi bi-twitter"></i>
+                </div>
+            </div>
+
+            <div class="footer-bottom d-flex justify-content-between flex-wrap">
+                <div>© 2025 PT. TRI SAKTI LAUTAN MAS</div>
+                <div>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Term & Condition</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

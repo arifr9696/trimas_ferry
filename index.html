@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT. TRI SAKTI LAUTAN MAS</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #FBFBFB;
+        }
+
+        /* ================= NAVBAR ================= */
+        .navbar {
+            background: #ffffff;
+            padding: 18px 0;
+        }
+
+        .navbar-brand img {
+            height: 65px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #111;
+            font-size: 13px;
+            font-weight: 500;
+            margin-left: 30px;
+            transition: 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #0d6efd;
+        }
+
+        /* ================= HERO ================= */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            background-color: #8FAAC1;
+            overflow: hidden;
+        }
+
+        .hero-section img {
+            width: 100%;
+            height: 520px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-section::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(40, 96, 148, 0.45);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Urbanist', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.3;
+            max-width: 900px;
+            margin: 0 auto;
+            color: #ffffff;
+        }
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 52px;
+            height: 52px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            background: transparent;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 26px;
+            cursor: pointer;
+            z-index: 5;
+        }
+
+        .hero-slider {
+            position: relative;
+        }
+
+        .arrow-left {
+            left: 70px;
+        }
+
+        .arrow-right {
+            right: 70px;
+        }
+
+        /* ================= SEARCH TICKET ================= */
+        .search-ticket {
+            margin-top: -35px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-box {
+            background: #ffffff;
+            border: 1px solid #EAEAEA;
+            border-radius: 4px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .search-box input {
+            border: none;
+            width: 100%;
+            outline: none;
+            font-size: 18px;
+            font-weight: 400;
+            color: #000000;
+            background: transparent;
+        }
+
+        .search-icon {
+            font-size: 22px;
+            color: #222;
+        }
+
+        /* ================= FORM PESAN ================= */
+        .booking-section {
+            padding: 40px 0 80px;
+            background: #FBFBFB;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 40px;
+        }
+
+        .booking-card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+        }
+
+        .form-control,
+        .form-select {
+            height: 58px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            box-shadow: none;
+            border-color: #2196f3;
+        }
+
+        .ticket-select {
+            margin-top: 18px;
+        }
+
+        .ticket-picker {
+            background: #ffffff;
+            cursor: pointer;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #212529;
+        }
+
+        .ticket-picker:hover {
+            border-color: #2196f3;
+        }
+
+        .selected-ticket-wrapper {
+            margin-top: 32px;
+        }
+
+        .ticket-card {
+            background: #eef6ff;
+            padding: 18px 20px;
+            margin-bottom: 18px;
+            border-radius: 0;
+            border: 1px solid #e4f0ff;
+        }
+
+        .ticket-card-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .ticket-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 28px;
+        }
+
+        .ticket-helper {
+            color: #003c7e;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .ticket-error {
+            color: #d60000;
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 18px;
+        }
+
+        .preview-grid:empty {
+            display: none;
+        }
+
+        .upload-btn {
+            height: 50px;
+            min-width: 270px;
+            border: 1px solid #ddd;
+            background: #fff;
+            border-radius: 10px;
+            padding: 0 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            color: #222;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .upload-btn:hover {
+            border-color: #2196f3;
+            color: #2196f3;
+        }
+
+        .small-action-link {
+            color: #2196f3;
+            font-size: 13px;
+            margin-top: 6px;
+        }
+
+        .ticket-input-small {
+            height: 50px;
+            max-width: 280px;
+        }
+
+        .ticket-control-area {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 18px;
+            flex-wrap: nowrap;
+        }
+
+        .remove-ticket-btn {
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            color: #444;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0;
+        }
+
+        .remove-ticket-btn:hover {
+            color: #d60000;
+        }
+
+        .qty-control {
+            background: #fff;
+            border: 1px solid #e7e7e7;
+            border-radius: 10px;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            margin-top: 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,.05);
+            flex-shrink: 0;
+        }
+
+        .qty-control button {
+            width: 46px;
+            height: 48px;
+            border: none;
+            background: #fff;
+            color: #2196f3;
+            font-size: 26px;
+            line-height: 1;
+        }
+
+        .qty-control span {
+            min-width: 42px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .preview-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 20px;
+        }
+
+        .preview-item {
+            width: 250px;
+        }
+
+        .preview-image-box {
+            width: 250px;
+            height: 135px;
+            background: #d8d8d8;
+            border: 1px solid #cfcfcf;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 13px;
+        }
+
+        .preview-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .preview-caption {
+            background: rgba(0,0,0,.55);
+            color: white;
+            text-align: center;
+            padding: 8px 10px;
+            font-size: 14px;
+        }
+
+        .doc-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #0d6efd;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .plat-result,
+        .stnk-result {
+            background: #f7f7f7;
+            border: 1px solid #d8d8d8;
+            border-radius: 12px;
+            min-height: 48px;
+            padding: 12px 16px;
+            margin-top: 12px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .total-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 28px;
+        }
+
+        .total-price {
+            color: #2196f3;
+            font-size: 22px;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .booking-btn {
+            background: #2196f3;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            padding: 14px 28px;
+        }
+
+        .booking-btn:hover {
+            background: #0b86e7;
+        }
+
+        /* ================= MODAL TIKET ================= */
+        .ticket-modal .modal-content {
+            border: none;
+            border-radius: 0;
+            overflow: hidden;
+        }
+
+        .ticket-modal .modal-header {
+            background: #56a4f4;
+            color: #fff;
+            padding: 28px 48px;
+            border-bottom: none;
+        }
+
+        .ticket-modal .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .ticket-modal .btn-close {
+            filter: invert(1);
+            opacity: 1;
+            transform: scale(1.35);
+        }
+
+        .ticket-option {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            align-items: center;
+            gap: 22px;
+            padding: 18px 48px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .ticket-option:hover {
+            background: #f3f8ff;
+        }
+
+        .ticket-option-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .ticket-option-price {
+            font-size: 20px;
+            font-weight: 800;
+            color: #000;
+            white-space: nowrap;
+        }
+
+        .ticket-radio {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid #d1d1d1;
+            background: linear-gradient(145deg, #fff, #e8e8e8);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,.1), 0 4px 10px rgba(0,0,0,.08);
+            position: relative;
+            transition: .2s;
+        }
+
+        .ticket-option:hover .ticket-radio {
+            border-color: #56a4f4;
+        }
+
+        .ticket-option.active .ticket-radio {
+            border-color: #2196f3;
+            background: #fff;
+        }
+
+        .ticket-option.active .ticket-radio::after {
+            content: "";
+            position: absolute;
+            inset: 6px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #56a4f4, #006fd6);
+            box-shadow: 0 2px 6px rgba(33,150,243,.45);
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            background: #fff;
+            padding-top: 50px;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .footer-logo img {
+            height: 85px;
+        }
+
+        .footer-menu a {
+            text-decoration: none;
+            color: #111;
+            margin: 0 18px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .social-icons i {
+            font-size: 32px;
+            margin-left: 18px;
+            color: #2e4f9c;
+            cursor: pointer;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #ececec;
+            margin-top: 40px;
+            padding: 30px 0;
+            font-size: 18px;
+            color: #7a7a7a;
+        }
+
+        .footer-bottom a {
+            text-decoration: none;
+            color: #7a7a7a;
+            margin-left: 30px;
+        }
+
+        .form-control[type="text"] {
+            padding-right: 45px;
+        }
+
+        .position-relative i {
+            font-size: 20px;
+            color: #333;
+            pointer-events: none;
+        }
+
+        .date-time-wrapper {
+            position: relative;
+        }
+
+        .date-time-input {
+            padding-right: 45px;
+            padding-left: 20px;
+            color: transparent;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            line-height: 58px;
+            position: relative;
+        }
+
+        .date-time-input::-webkit-calendar-picker-indicator {
+            opacity: 0;
+            position: absolute;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .date-time-input::before {
+            content: attr(data-placeholder);
+            color: #212529;
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            line-height: normal;
+        }
+
+        .date-time-input:valid,
+        .date-time-input:focus {
+            color: #212529;
+        }
+
+        .date-time-input:valid::before,
+        .date-time-input:focus::before {
+            content: "";
+        }
+
+        .date-time-icon {
+            position: absolute;
+            top: 50%;
+            right: 18px;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: #222;
+            pointer-events: none;
+        }
+
+        @media(max-width: 992px) {
+            .footer-logo {
+                text-align: center !important;
+                margin-bottom: 20px;
+            }
+
+            .footer-logo img {
+                display: inline-block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+
+            .hero-content h1 {
+                font-size: 30px;
+            }
+
+            .arrow-left,
+            .arrow-right {
+                display: none;
+            }
+
+            .footer-menu {
+                margin: 20px 0;
+                text-align: center;
+            }
+
+            .social-icons {
+                text-align: center !important;
+                margin-top: 20px;
+            }
+
+            .social-icons i {
+                margin: 0 12px;
+            }
+
+            .ticket-control-area {
+                justify-content: flex-start;
+                align-items: center;
+                flex-wrap: nowrap;
+            }
+
+            .preview-grid {
+                justify-content: flex-start;
+            }
+
+            .qty-control {
+                margin-top: 0;
+            }
+        }
+
+        @media(max-width: 768px) {
+            .hero-section img {
+                height: 420px;
+                object-fit: cover;
+                object-position: center;
+            }
+
+            .hero-content {
+                padding: 0 30px;
+            }
+
+            .hero-content h1 {
+                font-size: 18px;
+                font-weight: 700;
+                line-height: 1.4;
+                max-width: 100%;
+            }
+
+            .search-ticket {
+                margin-top: -35px;
+            }
+
+            .search-box {
+                height: 70px;
+                padding: 0 20px;
+            }
+
+            .search-box input {
+                font-size: 16px;
+            }
+
+            .booking-card {
+                padding: 24px 16px;
+            }
+
+            .ticket-option {
+                grid-template-columns: 1fr auto;
+                padding: 16px 22px;
+            }
+
+            .ticket-option-price {
+                grid-column: 1 / 2;
+                font-size: 16px;
+            }
+
+            .ticket-radio {
+                grid-row: 1 / 3;
+                grid-column: 2 / 3;
+            }
+
+            .ticket-option-name {
+                font-size: 18px;
+            }
+
+            .upload-btn,
+            .ticket-input-small {
+                min-width: 100%;
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .preview-item,
+            .preview-image-box {
+                width: 100%;
+            }
+
+            .total-wrapper {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .ticket-control-area {
+                justify-content: space-between;
+                width: 100%;
+                gap: 12px;
+            }
+
+            .remove-ticket-btn {
+                white-space: nowrap;
+            }
+
+            .qty-control button {
+                width: 42px;
+            }
+
+            .qty-control span {
+                min-width: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+
+            <a class="navbar-brand" href="#">
+                <img src="img/logo.png" alt="Logo">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Tutorial</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Tentang Kami</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Kontak</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- ================= HERO SECTION / SLIDER ================= -->
+    <section id="heroSlider" class="carousel slide hero-slider" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="hero-section">
+                    <img src="img/slider/header1.png" alt="Slider Kapal">
+                    <div class="container hero-content">
+                        <h1>Memberikan Pelayanan Berkualitas, Inovasi dan Perbaikan Berkelanjutan untuk mencapai Kepuasan Pelanggan</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="hero-section">
+                    <img src="img/slider/header1.png" alt="Slider Kapal">
+                    <div class="container hero-content">
+                        <h1>Perjalanan Laut Aman, Nyaman, dan Terpercaya Bersama PT. Tri Sakti Lautan Mas</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="hero-section">
+                    <img src="img/slider/header1.png" alt="Slider Kapal">
+                    <div class="container hero-content">
+                        <h1>Nikmati Kemudahan Pemesanan Tiket Kapal Secara Online</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="slider-arrow arrow-left" type="button" data-bs-target="#heroSlider" data-bs-slide="prev">
+            <i class="bi bi-arrow-left"></i>
+        </button>
+
+        <button class="slider-arrow arrow-right" type="button" data-bs-target="#heroSlider" data-bs-slide="next">
+            <i class="bi bi-arrow-right"></i>
+        </button>
+    </section>
+
+    <!-- ================= SEARCH TICKET ================= -->
+    <div class="container search-ticket">
+        <div class="search-box">
+            <input type="text" placeholder="Cek Tiket Anda">
+            <i class="bi bi-search search-icon"></i>
+        </div>
+    </div>
+
+    <!-- ================= BOOKING SECTION ================= -->
+    <section class="booking-section">
+        <div class="container">
+
+            <h2 class="section-title">Pesan Tiket</h2>
+
+            <div class="booking-card">
+                <form id="bookingForm" novalidate>
+                    <div class="row g-4">
+                        <div class="col-lg-4">
+                            <input type="text" id="namaPemesan" class="form-control" placeholder="Input Nama Pemesan" required>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <input type="email" id="emailPemesan" class="form-control" placeholder="Email" required>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <input type="text" id="noWhatsapp" class="form-control" placeholder="No HP / Whatsapp (tidak wajib)">
+                        </div>
+
+                        <div class="col-lg-4">
+                            <select class="form-select" required>
+                                <option selected disabled value="">Pilih Pelabuhan Keberangkatan</option>
+                                <option value="ketapang">Ketapang</option>
+                                <option value="gilimanuk">Gilimanuk</option>
+                                <option value="lembar">Lembar</option>
+                                <option value="padangbai">Padangbai</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <select class="form-select" required>
+                                <option selected disabled value="">Pilih Pelabuhan Tujuan</option>
+                                <option value="ketapang">Ketapang</option>
+                                <option value="gilimanuk">Gilimanuk</option>
+                                <option value="lembar">Lembar</option>
+                                <option value="padangbai">Padangbai</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div class="position-relative date-time-wrapper">
+                                <input type="date" class="form-control date-time-input" data-placeholder="Pilih Tanggal" required>
+                                <i class="bi bi-calendar3 date-time-icon"></i>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div class="position-relative date-time-wrapper">
+                                <input type="time" class="form-control date-time-input" data-placeholder="Pilih Jam" required>
+                                <i class="bi bi-clock-history date-time-icon"></i>
+                            </div>
+                        </div>
+
+                        <div class="col-12 ticket-select">
+                            <button type="button" id="openTicketModal" class="form-control ticket-picker" data-bs-toggle="modal" data-bs-target="#ticketModal">
+                                <span>Pilih Tiket</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="selectedTickets" class="selected-ticket-wrapper"></div>
+
+                    <div class="total-wrapper d-none" id="totalWrapper">
+                        <h3 class="total-price" id="totalPrice">Total Harga : Rp. 0,00</h3>
+                        <button type="button" id="bookingButton" class="booking-btn">Booking Tiket</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= MODAL PILIH TIKET ================= -->
+    <div class="modal fade ticket-modal" id="ticketModal" tabindex="-1" aria-labelledby="ticketModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ticketModalLabel">Pilih Tiket</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0" id="ticketOptionWrapper"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-3 footer-logo">
+                    <img src="img/logo.png" alt="Logo Footer">
+                </div>
+
+                <div class="col-lg-6 text-center footer-menu">
+                    <a href="#">Beranda</a>
+                    <a href="#">Tutorial</a>
+                    <a href="#">Tentang Kami</a>
+                    <a href="#">Kontak</a>
+                </div>
+
+                <div class="col-lg-3 text-end social-icons">
+                    <i class="bi bi-facebook"></i>
+                    <i class="bi bi-instagram"></i>
+                    <i class="bi bi-twitter"></i>
+                </div>
+            </div>
+
+            <div class="footer-bottom d-flex justify-content-between flex-wrap">
+                <div>© 2025 PT. TRI SAKTI LAUTAN MAS</div>
+                <div>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Term & Condition</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            const ticketMaster = [
+                { id: 'dewasa-ekonomi', name: 'Dewasa Ekonomi', price: 113000, requireVehicle: false },
+                { id: 'anak-anak-ekonomi', name: 'Anak - Anak Ekonomi', price: null, requireVehicle: false },
+                { id: 'bayi', name: 'Bayi', price: 10700, requireVehicle: false },
+                { id: 'golongan-1', name: 'Golongan I', price: 126910, requireVehicle: true },
+                { id: 'golongan-2', name: 'Golongan II', price: 227100, requireVehicle: true },
+                { id: 'golongan-3', name: 'Golongan III', price: 456290, requireVehicle: true },
+                { id: 'golongan-4-penumpang', name: 'Golongan IV - Penumpang', price: 1370410, requireVehicle: true },
+                { id: 'golongan-4-barang', name: 'Golongan IV - Barang', price: 1358290, requireVehicle: true },
+                { id: 'golongan-5-penumpang', name: 'Golongan V - Penumpang', price: 2443065, requireVehicle: true },
+                { id: 'golongan-5-barang', name: 'Golongan V - Barang', price: 2493885, requireVehicle: true },
+                { id: 'golongan-6-penumpang', name: 'Golongan VI - Penumpang', price: 3916790, requireVehicle: true },
+                { id: 'golongan-6-barang', name: 'Golongan VI - Barang', price: 4034330, requireVehicle: true },
+                { id: 'golongan-7', name: 'Golongan VII', price: 5310030, requireVehicle: true },
+                { id: 'golongan-8', name: 'Golongan VIII', price: 7471590, requireVehicle: true },
+                { id: 'golongan-9', name: 'Golongan IX', price: 9108990, requireVehicle: true }
+            ];
+
+            let selectedTickets = [];
+            let hasTriedBooking = false;
+            const ticketModal = new bootstrap.Modal(document.getElementById('ticketModal'));
+
+            function formatRupiah(number) {
+                return new Intl.NumberFormat('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }).format(number).replace('Rp', 'Rp.');
+            }
+
+            function formatTicketPrice(price) {
+                return price === null ? 'Rp. -' : formatRupiah(price);
+            }
+
+            function renderTicketOptions() {
+                let html = '';
+
+                ticketMaster.forEach(ticket => {
+                    const active = selectedTickets.some(item => item.id === ticket.id) ? 'active' : '';
+                    html += `
+                        <div class="ticket-option ${active}" data-ticket-id="${ticket.id}">
+                            <div class="ticket-option-name">${ticket.name}</div>
+                            <div class="ticket-option-price">${formatTicketPrice(ticket.price)}</div>
+                            <div class="ticket-radio"></div>
+                        </div>
+                    `;
+                });
+
+                $('#ticketOptionWrapper').html(html);
+            }
+
+            function ensureVehicleSlots(ticket) {
+                while (ticket.vehicleDocs.length < ticket.qty) {
+                    ticket.vehicleDocs.push({
+                        platImage: '',
+                        stnkImage: '',
+                        platNumber: '',
+                        stnkNumber: ''
+                    });
+                }
+
+                if (ticket.vehicleDocs.length > ticket.qty) {
+                    ticket.vehicleDocs = ticket.vehicleDocs.slice(0, ticket.qty);
+                }
+            }
+
+            function isTicketComplete(ticket) {
+                if (!ticket.requireVehicle) {
+                    return true;
+                }
+
+                ensureVehicleSlots(ticket);
+
+                return ticket.vehicleDocs.every(doc => {
+                    const platSudahDiisi = doc.platImage || doc.platNumber;
+                    const stnkSudahDiisi = doc.stnkImage || doc.stnkNumber;
+
+                    return platSudahDiisi && stnkSudahDiisi;
+                });
+            }
+
+            function renderSelectedTickets() {
+                let html = '';
+
+                selectedTickets.forEach(ticket => {
+                    ensureVehicleSlots(ticket);
+                    const ticketTotal = (ticket.price || 0) * ticket.qty;
+                    const isComplete = isTicketComplete(ticket);
+
+                    let previews = '';
+                    let vehicleFormHtml = '';
+
+                    if (ticket.requireVehicle) {
+                        ticket.vehicleDocs.forEach((doc, index) => {
+                            const nomor = index + 1;
+                            const hasAnyData = doc.platImage || doc.stnkImage || doc.platNumber || doc.stnkNumber;
+
+                            if (!hasAnyData) {
+                                return;
+                            }
+
+                            const platPreview = doc.platImage
+                                ? `<div class="preview-image-box"><img src="${doc.platImage}" alt="Foto Plat Kendaraan ${nomor}"></div><div class="preview-caption">Foto Plat Kendaraan</div>`
+                                : '';
+
+                            const stnkPreview = doc.stnkImage
+                                ? `<div class="preview-image-box"><img src="${doc.stnkImage}" alt="Foto STNK ${nomor}"></div><div class="preview-caption">Foto STNK</div>`
+                                : '';
+
+                            const platText = doc.platNumber
+                                ? `<div class="plat-result">PLAT : ${doc.platNumber}</div>`
+                                : '';
+
+                            const stnkText = doc.stnkNumber
+                                ? `<div class="stnk-result">STNK : ${doc.stnkNumber}</div>`
+                                : '';
+
+                            previews += `
+                                <div class="preview-item">
+                                    <span class="doc-label">Data Kendaraan ${nomor}</span>
+                                    ${stnkPreview}
+                                    ${platPreview ? `<div class="${stnkPreview ? 'mt-3' : ''}">${platPreview}</div>` : ''}
+                                    ${platText}
+                                    ${stnkText}
+                                </div>
+                            `;
+                        });
+
+                        vehicleFormHtml = `
+                            <div class="ticket-helper">Jika Rombongan Lebih dari 2 Kendaraan, silahkan inputkan plat dan STNK lebih dari 1 kali</div>
+                            <div class="row g-3 align-items-start">
+                                <div class="col-md-6">
+                                    <label class="upload-btn">
+                                        <span>Ambil Gambar Plat Kendaraan</span>
+                                        <i class="bi bi-upload"></i>
+                                        <input type="file" class="d-none upload-vehicle-file" data-type="platImage" accept="image/*">
+                                    </label>
+                                    <div class="small-action-link">Pilih Salah Satu</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control ticket-input-small vehicle-text-input" data-type="platNumber" placeholder="Tulis Nomor Plat Kendaraan">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="upload-btn">
+                                        <span>Ambil Gambar STNK</span>
+                                        <i class="bi bi-upload"></i>
+                                        <input type="file" class="d-none upload-vehicle-file" data-type="stnkImage" accept="image/*">
+                                    </label>
+                                    <div class="small-action-link">Pilih Salah Satu</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control ticket-input-small vehicle-text-input" data-type="stnkNumber" placeholder="Tulis Nomor STNK">
+                                </div>
+                            </div>
+
+                            ${(hasTriedBooking && !isComplete) ? '<div class="ticket-error">Plat Kendaraan dan STNK Belum Diinputkan Sesuai Jumlah Beli Tiket</div>' : ''}
+                        `;
+                    }
+
+                    html += `
+                        <div class="ticket-card" data-ticket-id="${ticket.id}">
+                            <div class="row g-4">
+                                <div class="${ticket.requireVehicle ? 'col-lg-7' : 'col-lg-9'}">
+                                    <div class="ticket-card-title">${ticket.name}</div>
+                                    <div class="ticket-price">${formatRupiah(ticketTotal)}</div>
+                                    ${vehicleFormHtml}
+                                </div>
+
+                                <div class="${ticket.requireVehicle ? 'col-lg-5' : 'col-lg-3'}">
+                                    <div class="ticket-control-area">
+                                        <button type="button" class="remove-ticket-btn">
+                                            <i class="bi bi-trash-fill"></i>
+                                            <span>Hapus</span>
+                                        </button>
+                                        <div class="qty-control">
+                                            <button type="button" class="qty-minus">−</button>
+                                            <span>${ticket.qty}</span>
+                                            <button type="button" class="qty-plus">+</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="preview-grid mt-4">
+                                        ${previews}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                $('#selectedTickets').html(html);
+                updateTotalPrice();
+                renderTicketOptions();
+            }
+
+            function updateTotalPrice() {
+                const total = selectedTickets.reduce((sum, ticket) => sum + ((ticket.price || 0) * ticket.qty), 0);
+
+                if (selectedTickets.length > 0) {
+                    $('#totalWrapper').removeClass('d-none');
+                    $('#totalPrice').text('Total Harga : ' + formatRupiah(total));
+                } else {
+                    $('#totalWrapper').addClass('d-none');
+                    $('#totalPrice').text('Total Harga : Rp. 0,00');
+                }
+            }
+
+            function getTicket(ticketId) {
+                return selectedTickets.find(ticket => ticket.id === ticketId);
+            }
+
+            function getFirstEmptyDoc(ticket, type) {
+                ensureVehicleSlots(ticket);
+                return ticket.vehicleDocs.find(doc => !doc[type]) || ticket.vehicleDocs[ticket.vehicleDocs.length - 1];
+            }
+
+            function addTicket(ticketId) {
+                const master = ticketMaster.find(ticket => ticket.id === ticketId);
+
+                if (master.price === null) {
+                    alert('Tarif tiket ini belum tersedia. Silahkan pilih jenis tiket lain.');
+                    return;
+                }
+
+                const existing = selectedTickets.find(ticket => ticket.id === ticketId);
+
+                if (existing) {
+                    existing.qty += 1;
+                    ensureVehicleSlots(existing);
+                } else {
+                    selectedTickets.push({
+                        id: master.id,
+                        name: master.name,
+                        price: master.price,
+                        requireVehicle: master.requireVehicle,
+                        qty: 1,
+                        vehicleDocs: [{
+                            platImage: '',
+                            stnkImage: '',
+                            platNumber: '',
+                            stnkNumber: ''
+                        }]
+                    });
+                }
+
+                renderSelectedTickets();
+                ticketModal.hide();
+            }
+
+            $('#openTicketModal').on('click', function () {
+                renderTicketOptions();
+            });
+
+            $('#ticketOptionWrapper').on('click', '.ticket-option', function () {
+                const ticketId = $(this).data('ticket-id');
+                addTicket(ticketId);
+            });
+
+            $('#selectedTickets').on('click', '.remove-ticket-btn', function () {
+                const ticketId = $(this).closest('.ticket-card').data('ticket-id');
+                selectedTickets = selectedTickets.filter(ticket => ticket.id !== ticketId);
+                renderSelectedTickets();
+            });
+
+            $('#selectedTickets').on('click', '.qty-plus', function () {
+                const ticketId = $(this).closest('.ticket-card').data('ticket-id');
+                const ticket = getTicket(ticketId);
+                ticket.qty += 1;
+                ensureVehicleSlots(ticket);
+                renderSelectedTickets();
+            });
+
+            $('#selectedTickets').on('click', '.qty-minus', function () {
+                const ticketId = $(this).closest('.ticket-card').data('ticket-id');
+                const ticket = getTicket(ticketId);
+
+                if (ticket.qty > 1) {
+                    ticket.qty -= 1;
+                    ensureVehicleSlots(ticket);
+                    renderSelectedTickets();
+                }
+            });
+
+            $('#selectedTickets').on('change', '.upload-vehicle-file', function () {
+                const file = this.files[0];
+                if (!file) return;
+
+                if (!file.type.startsWith('image/')) {
+                    alert('File harus berupa gambar JPG, PNG, JPEG, WEBP, atau format gambar lainnya.');
+                    $(this).val('');
+                    return;
+                }
+
+                const ticketId = $(this).closest('.ticket-card').data('ticket-id');
+                const type = $(this).data('type');
+                const ticket = getTicket(ticketId);
+                const reader = new FileReader();
+
+                reader.onload = function (event) {
+                    const doc = getFirstEmptyDoc(ticket, type);
+                    doc[type] = event.target.result;
+                    renderSelectedTickets();
+                };
+
+                reader.readAsDataURL(file);
+            });
+
+            $('#selectedTickets').on('keydown', '.vehicle-text-input', function (event) {
+                if (event.key !== 'Enter') return;
+
+                event.preventDefault();
+
+                const value = $(this).val().trim().toUpperCase();
+                if (!value) return;
+
+                const ticketId = $(this).closest('.ticket-card').data('ticket-id');
+                const type = $(this).data('type');
+                const ticket = getTicket(ticketId);
+                const doc = getFirstEmptyDoc(ticket, type);
+
+                doc[type] = value;
+                $(this).val('');
+                renderSelectedTickets();
+            });
+
+            $('#bookingButton').on('click', function (event) {
+                event.preventDefault();
+
+                if (selectedTickets.length === 0) {
+                    alert('Silahkan pilih tiket terlebih dahulu.');
+                    return;
+                }
+
+                hasTriedBooking = true;
+                const invalidTickets = selectedTickets.filter(ticket => !isTicketComplete(ticket));
+                renderSelectedTickets();
+
+                if (invalidTickets.length > 0) {
+                    alert('Lengkapi data plat kendaraan dan STNK sesuai jumlah tiket. Anda bisa upload gambar atau menulis nomor pada masing-masing data.');
+                    return;
+                }
+
+                const namaPemesan = $('#namaPemesan').val().trim() || '-';
+                const emailPemesan = $('#emailPemesan').val().trim() || '-';
+                const nomorWhatsapp = $('#noWhatsapp').val().trim();
+                const totalHarga = $('#totalPrice').text();
+
+                let detailTiket = selectedTickets.map(ticket => {
+                    const subtotal = (ticket.price || 0) * ticket.qty;
+                    return `- ${ticket.name} (${ticket.qty} tiket) = ${formatRupiah(subtotal)}`;
+                }).join('\n');
+
+                const pesanWhatsapp = `Assalamualaikum dan Selamat Malam.\nKode Booking Tiket Anda :\n0012AXX01\nBooking Tiket Anda Sebelum\n*3 Februari 2026*\nSilahkan Kunjungi Website Trimas Ferri untuk menyelesaikan booking :\nhttps://trimas.co.id/booking/0012AXX01`;
+
+                if (nomorWhatsapp) {
+                    const nomorTujuan = nomorWhatsapp
+                        .replace(/[^0-9]/g, '')
+                        .replace(/^0/, '62');
+
+                    const urlWhatsapp = `https://wa.me/${nomorTujuan}?text=${encodeURIComponent(pesanWhatsapp)}`;
+                    window.open(urlWhatsapp, '_blank');
+                }
+
+                window.location.href = 'file:///Users/arifrahman/Documents/pekerjaan_ummat/non_akademik/aplikasi%20tiket/booking.html';
+            });
+
+            $('.date-time-input').on('click', function () {
+                if (this.showPicker) {
+                    this.showPicker();
+                }
+            });
+
+            renderTicketOptions();
+        });
+    </script>
+
+</body>
+</html>
