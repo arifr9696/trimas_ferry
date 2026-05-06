@@ -499,6 +499,52 @@
             box-shadow: 0 2px 6px rgba(33,150,243,.45);
         }
 
+
+
+        /* ================= MODAL MOCKUP OTOMATIS ================= */
+        .mockup-modal .modal-content {
+            border: none;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 18px 50px rgba(0,0,0,.18);
+        }
+
+        .mockup-modal .modal-header {
+            background: #2196f3;
+            color: #ffffff;
+            border-bottom: none;
+            padding: 22px 28px;
+        }
+
+        .mockup-modal .modal-title {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .mockup-modal .btn-close {
+            filter: invert(1);
+            opacity: 1;
+        }
+
+        .mockup-modal .modal-body {
+            padding: 32px 28px;
+            text-align: center;
+        }
+
+        .mockup-modal .mockup-text {
+            font-size: 22px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 10px;
+            text-transform: capitalize;
+        }
+
+        .mockup-modal .mockup-subtext {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 0;
+        }
+
         /* ================= FOOTER ================= */
         footer {
             background: #fff;
@@ -829,17 +875,14 @@
             <div class="booking-card">
                 <form id="bookingForm" novalidate>
                     <div class="row g-4">
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <input type="text" id="namaPemesan" class="form-control" placeholder="Input Nama Pemesan" required>
                         </div>
 
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <input type="email" id="emailPemesan" class="form-control" placeholder="Email" required>
                         </div>
 
-                        <div class="col-lg-4">
-                            <input type="text" id="noWhatsapp" class="form-control" placeholder="No HP / Whatsapp (tidak wajib)">
-                        </div>
 
                         <div class="col-lg-4">
                             <select class="form-select" required>
@@ -908,6 +951,25 @@
         </div>
     </div>
 
+
+
+    <!-- ================= MODAL MOCKUP OTOMATIS ================= -->
+    <div class="modal fade mockup-modal" id="mockupModal" tabindex="-1" aria-labelledby="mockupModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mockupModalLabel">Informasi Website</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mockup-text">mockup website pembelian tiket trimas ferry</div>
+                    <p class="mockup-subtext">Website ini merupakan tampilan mockup untuk kebutuhan simulasi pembelian tiket.</p>
+                    <button type="button" class="btn btn-primary mt-4 px-4" data-bs-dismiss="modal">Mengerti</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ================= FOOTER ================= -->
     <footer>
         <div class="container">
@@ -969,6 +1031,8 @@
             let selectedTickets = [];
             let hasTriedBooking = false;
             const ticketModal = new bootstrap.Modal(document.getElementById('ticketModal'));
+            const mockupModal = new bootstrap.Modal(document.getElementById('mockupModal'));
+            mockupModal.show();
 
             function formatRupiah(number) {
                 return new Intl.NumberFormat('id-ID', {
